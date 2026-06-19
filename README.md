@@ -5,6 +5,8 @@ CSS, and local MDX collections.
 
 ![Paperframe preview](docs/assets/template-preview.svg)
 
+Live demo: [paperframe-chi.vercel.app](https://paperframe-chi.vercel.app)
+
 Paperframe is designed for people who want a public site that feels more like a
 small publication than a generic startup landing page.
 
