@@ -1,9 +1,40 @@
+const DEFAULT_SITE_URL = "https://example.com";
+
+function normalizeSiteUrl(value?: string) {
+  if (!value) {
+    return null;
+  }
+
+  const input = value.trim();
+
+  if (!input) {
+    return null;
+  }
+
+  const withProtocol = /^https?:\/\//i.test(input) ? input : `https://${input}`;
+
+  try {
+    return new URL(withProtocol).origin;
+  } catch {
+    return null;
+  }
+}
+
+function resolveSiteUrl() {
+  return (
+    normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL) ??
+    normalizeSiteUrl(process.env.VERCEL_PROJECT_PRODUCTION_URL) ??
+    normalizeSiteUrl(process.env.VERCEL_URL) ??
+    DEFAULT_SITE_URL
+  );
+}
+
 export const siteConfig = {
   name: "Paperframe",
   shortName: "Paperframe",
   description:
     "An editorial-style personal site template built with Next.js App Router, Tailwind CSS, and local MDX collections.",
-  url: "https://example.com",
+  url: resolveSiteUrl(),
   lang: "en",
   locale: "en_US",
   themeColor: "#f5f5f4",

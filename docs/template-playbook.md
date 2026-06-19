@@ -7,6 +7,8 @@ template maintenance and personal-site work in the same repository.
 
 - `Afeng01/paperframe`
   This stays generic and reusable.
+- `paperframe` on Vercel
+  This is the public demo of the template repo, still using seeded content.
 - `your-handle/your-site`
   This becomes the actual website with a domain, real copy, screenshots, and
   public proof.
@@ -14,6 +16,12 @@ template maintenance and personal-site work in the same repository.
 Do not keep customizing the template repo as if it were your public site. Once
 the direction is validated, create a separate real-site repository from the
 template and let it diverge.
+
+Do not merge the template demo and the real site back into one deploy target.
+They serve different jobs:
+
+- template demo proves the shell and reading experience
+- real site proves your actual voice, proof, and public identity
 
 ## First pass after using the template
 
@@ -59,12 +67,21 @@ For the template repo itself:
 1. keep the GitHub About text generic
 2. keep topics template-focused
 3. upload `docs/assets/github-social-preview.png` in `Settings -> Social preview`
+4. point the repository Homepage field to the Vercel demo URL
 
 For the real site repo:
 
 1. make the About text person-specific
 2. replace the social preview with site-specific imagery
 3. point the repository homepage to the deployed domain
+
+## Vercel demo pass for the template repo
+
+1. import `Afeng01/paperframe` into Vercel
+2. keep `main` as the production branch
+3. set `NEXT_PUBLIC_SITE_URL` to the production demo URL
+4. keep seeded MDX content in the template demo; do not replace it with personal copy
+5. once deployed, link that demo URL from the repo README and GitHub Homepage field
 
 ## Anti-patterns
 

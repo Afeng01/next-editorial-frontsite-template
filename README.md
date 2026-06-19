@@ -38,6 +38,27 @@ http://localhost:3000
 If you prefer the GitHub UI, click `Use this template`, create a new repository,
 then clone that new repository locally.
 
+## Live demo on Vercel
+
+The template repo itself should also have a public demo deployment.
+
+Why:
+
+- GitHub shows the source
+- Vercel shows the actual reading experience
+
+Recommended setup for `Afeng01/paperframe`:
+
+1. Import the GitHub repository into Vercel.
+2. Keep `main` as the production branch.
+3. Add `NEXT_PUBLIC_SITE_URL` for the production environment.
+4. Set that variable to the production demo domain, for example `https://paperframe.vercel.app` or your connected custom domain.
+5. After the first production deploy, paste the demo URL into the GitHub repository Homepage field and add a `Live demo` link near the top of this README.
+
+If `NEXT_PUBLIC_SITE_URL` is not set, the template falls back to Vercel system
+environment variables so canonical URLs, `sitemap.xml`, `robots.txt`, and share
+images still point at the active deployment instead of `example.com`.
+
 ## Included surfaces
 
 - `/`
@@ -69,11 +90,13 @@ Those belong in the next product phase, not in the base template.
 Keep them as two separate repositories.
 
 - `paperframe`: the reusable upstream template
+- `paperframe-demo`: the Vercel deployment of the template repo with seeded content
 - `your-site`: your actual public website with real copy, assets, and domain settings
 
 That split matters because template work and personal-site work move at
-different speeds. The template should stay generic, documented, and easy to
-fork. Your real site should be free to become specific, messy, and personal.
+different speeds. The template should stay generic, documented, easy to fork,
+and easy to preview. Your real site should be free to become specific, messy,
+and personal.
 
 If you want a concrete migration sequence, read
 [docs/template-playbook.md](docs/template-playbook.md).
@@ -150,6 +173,7 @@ image in `docs/assets/template-preview.svg`.
 
 Recommended next steps:
 
+- deploy the template repo to Vercel and expose a stable demo URL
 - add a real domain
 - update the generated share image styling if your brand is very different
 - replace the seed SVGs in `public/images/`
