@@ -1,6 +1,7 @@
 {
-  "name": "xiao12-top",
+  "name": "next-editorial-frontsite-template",
   "version": "0.1.0",
+  "description": "Editorial-style personal frontsite template built with Next.js App Router and local MDX collections.",
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { ProjectDetailTemplate } from "@/components/detail/ProjectDetailTemplate";
 import { getAllProjects, getProjectBySlug } from "@/lib/content/loaders";
+import { buildPageMetadata } from "@/lib/metadata";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -24,10 +25,12 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     return {};
   }
 
-  return {
-    title: `${project.title} | Cherry Xiao`,
+  return buildPageMetadata({
+    title: project.title,
     description: project.summary,
-  };
+    path: `/projects/${project.slug}`,
+    imagePath: project.coverImage,
+  });
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {

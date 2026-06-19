@@ -1,8 +1,9 @@
 import { siteContentSchema, type SiteContent } from "@/lib/content/schemas";
+import { siteConfig } from "@/lib/site-config";
 
 export const siteContent = siteContentSchema.parse({
-  siteTitle: "Cherry Xiao",
-  siteSubtitle: "Building, writing, and organizing ideas in public.",
+  siteTitle: siteConfig.name,
+  siteSubtitle: "A calm editorial shell for writing, projects, and service pages.",
   navigation: [
     { label: "Articles", href: "/articles" },
     { label: "Projects", href: "/projects" },
@@ -18,29 +19,33 @@ export const siteContent = siteContentSchema.parse({
     { label: "About", href: "/about" },
   ],
   heroMeta: [
-    { label: "Issue", value: "VOL.26.06" },
-    { label: "Focus", value: "Frontsite Replica" },
-    { label: "Updated", value: "06.19" },
+    { label: "Issue", value: "VOL.01" },
+    { label: "Focus", value: "Editorial Template" },
+    { label: "Updated", value: "Template Ready" },
   ],
   stats: [
-    { label: "Articles", value: "06", note: "Placeholder archive" },
-    { label: "Projects", value: "06", note: "Current build set" },
-    { label: "Services", value: "03", note: "Phase 1 cards" },
-    { label: "Days writing", value: "128", note: "Static placeholder" },
+    { label: "Articles", value: "06", note: "Seeded sample archive" },
+    { label: "Projects", value: "06", note: "Template project set" },
+    { label: "Services", value: "03", note: "Sample service cards" },
+    { label: "Routes", value: "08", note: "Included page surfaces" },
   ],
   quote: {
-    label: "Quote of the month",
-    value: "Build the shell first, then make the content worth keeping.",
-    author: "Cherry Xiao",
+    label: "Template note",
+    value: "Shape the shell well enough that real content only needs files, not rewrites.",
+    author: "Editorial Frontsite",
   },
   contact: {
-    title: "Start a conversation",
+    title: "Swap in your details",
     summary:
-      "This phase keeps the structure and typography close to the reference site while leaving all real content replaceable later.",
+      "Everything here is intentionally editable from a small number of files so the public pass can stay focused on content and art direction.",
     links: [
-      { label: "Email", value: "hello@example.com", href: "mailto:hello@example.com" },
-      { label: "GitHub", value: "github.com/example", href: "https://github.com/example" },
-      { label: "Notes", value: "Request the real content pass later", href: "/about" },
+      {
+        label: "Email",
+        value: siteConfig.author.email,
+        href: `mailto:${siteConfig.author.email}`,
+      },
+      { label: "GitHub", value: "github.com/your-handle", href: siteConfig.social.github },
+      { label: "About", value: "Read the template notes", href: "/about" },
     ],
   },
 }) satisfies SiteContent;

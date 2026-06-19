@@ -1,26 +1,29 @@
 ---
-title: About this shell
-summary: A placeholder about page that exercises the final prose layout without committing any real public narrative yet.
+title: About this template
+summary: A sample editorial page that explains what the template includes before any real biography or public story is added.
 ---
 
-## Why this exists
+## What this ships with
 
-This site is being rebuilt in two passes. The current pass focuses on structure,
-typography, and route completeness before any real content migration happens.
+This template starts with a calm editorial shell, complete route structure, and
+local MDX content loading so a later brand pass can focus on real words and
+images instead of layout scaffolding.
 
-## What is real already
+## Included surfaces
 
-- The frontsite information architecture
-- The layout rhythm between light and dark sections
-- The shared MDX rendering path
-- The local content model for articles, projects, and services
+- Home
+- About
+- Articles list and detail
+- Projects list and detail
+- Services list and detail
+- Generated metadata routes such as `sitemap.xml`, `robots.txt`, and share images
 
-## What is intentionally temporary
+## What you should replace first
 
-- Most copy
-- Most cover images
-- All stats
-- Contact details
+- Site metadata in `src/lib/site-config.ts`
+- Navigation and homepage modules in `src/content/site.ts`
+- Sample MDX entries inside `src/content/**`
+- Share imagery, icons, and screenshots for your public release
 
-The goal is to keep the shell clean enough that a later content pass only
-replaces files inside `src/content/` rather than rewriting page components.
+The goal is to keep the public-content pass mostly inside `src/content/` and a
+small set of config files rather than spreading edits across every route.

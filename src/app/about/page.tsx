@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 
 import { RichContentRenderer } from "@/components/shared/RichContentRenderer";
 import { getAboutEntry } from "@/lib/content/loaders";
+import { buildPageMetadata } from "@/lib/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
   const about = await getAboutEntry();
 
-  return {
-    title: `${about.title} | Cherry Xiao`,
+  return buildPageMetadata({
+    title: about.title,
     description: about.summary,
-  };
+    path: "/about",
+  });
 }
 
 export default async function AboutPage() {

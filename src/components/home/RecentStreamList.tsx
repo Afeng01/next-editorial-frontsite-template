@@ -22,7 +22,7 @@ export function RecentStreamList({ articles }: RecentStreamListProps) {
               working thoughts
             </h2>
             <p className="mt-6 max-w-xs font-[family-name:var(--font-serif)] text-sm leading-relaxed text-stone-400">
-              Ordered by date. Placeholder copy now, real archive later.
+              Ordered by date. Seed content now, real archive later.
             </p>
             <Link
               className="mt-8 inline-flex items-center gap-2 border-b border-stone-700 pb-1 text-[11px] uppercase tracking-[0.24em] text-stone-300 transition-colors hover:border-stone-300 hover:text-white"

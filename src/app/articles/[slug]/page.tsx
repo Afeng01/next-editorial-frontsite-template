@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { ArticleDetailTemplate } from "@/components/detail/ArticleDetailTemplate";
 import { getAllArticles, getArticleBySlug } from "@/lib/content/loaders";
+import { buildPageMetadata } from "@/lib/metadata";
 
 type ArticlePageProps = {
   params: Promise<{
@@ -24,10 +25,14 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     return {};
   }
 
-  return {
-    title: `${article.title} | Cherry Xiao`,
+  return buildPageMetadata({
+    title: article.title,
     description: article.summary,
-  };
+    path: `/articles/${article.slug}`,
+    imagePath: article.coverImage,
+    type: "article",
+    publishedTime: article.date,
+  });
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {

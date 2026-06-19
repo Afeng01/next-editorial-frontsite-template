@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { ServiceDetailTemplate } from "@/components/detail/ServiceDetailTemplate";
 import { getAllServices, getServiceBySlug } from "@/lib/content/loaders";
+import { buildPageMetadata } from "@/lib/metadata";
 
 type ServicePageProps = {
   params: Promise<{
@@ -24,10 +25,12 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     return {};
   }
 
-  return {
-    title: `${service.title} | Cherry Xiao`,
+  return buildPageMetadata({
+    title: service.title,
     description: service.summary,
-  };
+    path: `/services/${service.slug}`,
+    imagePath: service.coverImage,
+  });
 }
 
 export default async function ServicePage({ params }: ServicePageProps) {
