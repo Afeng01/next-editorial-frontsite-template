@@ -8,6 +8,36 @@ CSS, and local MDX collections.
 Paperframe is designed for people who want a public site that feels more like a
 small publication than a generic startup landing page.
 
+## Who this is for
+
+- people building a calm, content-first personal site
+- writers, designers, and builders who want a public shell before real content migration
+- anyone who wants to keep content in local files instead of starting with a CMS
+
+Paperframe is a template repository, not a finished personal brand site. The
+point is to give you a stable publication shell first, then let the real voice,
+portfolio, and public proof replace the seeded content.
+
+## 3-minute start
+
+Use the GitHub template directly:
+
+```bash
+gh repo create your-site --public --template Afeng01/paperframe --clone
+cd your-site
+npm install
+npm run dev
+```
+
+Default dev URL:
+
+```text
+http://localhost:3000
+```
+
+If you prefer the GitHub UI, click `Use this template`, create a new repository,
+then clone that new repository locally.
+
 ## Included surfaces
 
 - `/`
@@ -34,6 +64,20 @@ small publication than a generic startup landing page.
 
 Those belong in the next product phase, not in the base template.
 
+## Template vs. real site
+
+Keep them as two separate repositories.
+
+- `paperframe`: the reusable upstream template
+- `your-site`: your actual public website with real copy, assets, and domain settings
+
+That split matters because template work and personal-site work move at
+different speeds. The template should stay generic, documented, and easy to
+fork. Your real site should be free to become specific, messy, and personal.
+
+If you want a concrete migration sequence, read
+[docs/template-playbook.md](docs/template-playbook.md).
+
 ## Stack
 
 - Next.js App Router
@@ -43,19 +87,6 @@ Those belong in the next product phase, not in the base template.
 - local MDX content
 - `gray-matter` + Zod content validation
 - `next-mdx-remote/rsc` for server-rendered MDX
-
-## Quick start
-
-```bash
-npm install
-npm run dev
-```
-
-Default dev URL:
-
-```text
-http://localhost:3000
-```
 
 ## Local commands
 
@@ -81,6 +112,15 @@ template.
 6. `src/content/services/*.mdx`
 
 If you only change those files, the rest of the UI should remain stable.
+
+## Repository presentation checklist
+
+Before publishing your fork or your derived real site, replace:
+
+- the repo description and topics on GitHub
+- `docs/assets/template-preview.svg` if the README hero should reflect your brand
+- `docs/assets/github-social-preview.png` in GitHub `Settings -> Social preview`
+- placeholder MDX entries under `src/content/**`
 
 ## Structure
 
