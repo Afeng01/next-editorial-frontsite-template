@@ -588,3 +588,20 @@ Check completed boxes or add a short completion note at the bottom after impleme
 git add .
 git commit -m "feat: build erlich-fun frontsite phase 1"
 ```
+
+## Completion Note
+
+Implemented on 2026-06-19 in `/Users/cherry_xiao/Developer/xiao12-top` on branch `codex/erlich-frontsite-phase1`.
+
+Verification completed:
+
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- local route checks on `/`, `/articles`, `/articles/[slug]`, `/projects/[slug]`
+- negative-path checks returning `404` on missing article, project, and service slugs
+
+Known limitation:
+
+- The temporary scaffold directory at `/tmp/xiao12-top-bootstrap` was not deleted automatically because local safety hooks block destructive cleanup without explicit confirmation.
+- Manual visual QA was performed at the HTML/route level in this pass; a screenshot-based design QA pass can still improve confidence on spacing and typography details.

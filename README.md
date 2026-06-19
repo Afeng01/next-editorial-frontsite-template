@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# xiao12-top
 
-## Getting Started
+Phase 1 rebuild of a content-focused frontsite inspired by the public structure
+and visual rhythm of `https://erlich.fun/`.
 
-First, run the development server:
+This repo currently covers:
+
+- `/`
+- `/about`
+- `/articles`
+- `/articles/[slug]`
+- `/projects`
+- `/projects/[slug]`
+- `/services`
+- `/services/[slug]`
+
+It intentionally does **not** cover:
+
+- `/deepclaude-pricing`
+- `/deepclaude-quota`
+- `/nano-banana-image`
+- `/4o-image`
+- real stats backed by Supabase
+- real migrated content
+
+## Stack
+
+- Next.js App Router
+- React 19
+- TypeScript
+- Tailwind CSS
+- local MDX content
+- Zod + gray-matter content validation
+- `next-mdx-remote/rsc` for server-rendered MDX
+
+## Local commands
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run lint
+npm run typecheck
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run dev` intentionally uses the webpack dev server instead of the default
+Turbopack path because this project renders local MDX through
+`next-mdx-remote/rsc`, and that combination is more stable in webpack during
+phase 1.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Default dev URL:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```text
+http://localhost:3000
+```
 
-## Learn More
+## Content locations
 
-To learn more about Next.js, take a look at the following resources:
+```text
+src/content/site.ts
+src/content/about.mdx
+src/content/articles/*.mdx
+src/content/projects/*.mdx
+src/content/services/*.mdx
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Key app structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```text
+src/app/
+src/components/
+src/lib/content/
+public/images/
+docs/superpowers/specs/
+docs/superpowers/plans/
+```
 
-## Deploy on Vercel
+Responsibility split:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `src/app/**`: routes and metadata
+- `src/components/**`: UI only
+- `src/content/**`: source content only
+- `src/lib/content/**`: parsing, validation, sorting, and selectors
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Current notes
+
+- Placeholder content is intentional and should be replaced later through
+  `src/content/**`, not by rewriting page components.
+- The target replication standard for phase 1 is layout and typography
+  similarity, not content identity.
+- The temporary bootstrap directory created during scaffolding was kept because
+  local safeguards blocked automatic deletion without explicit confirmation.
