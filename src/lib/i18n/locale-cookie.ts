@@ -20,7 +20,7 @@ export function serializeLocaleCookie(
   locale: Locale,
   overrides: Partial<LocaleCookieOptions> = {},
 ): string {
-  const options = { ...DEFAULT_LOCALE_COOKIE_OPTIONS, ...overrides };
+  const options = resolveLocaleCookieOptions(overrides);
   const parts = [
     `${LOCALE_COOKIE_NAME}=${encodeURIComponent(locale)}`,
     `Path=${options.path}`,
@@ -33,6 +33,21 @@ export function serializeLocaleCookie(
   }
 
   return parts.join("; ");
+}
+
+function resolveLocaleCookieOptions(
+  overrides: Partial<LocaleCookieOptions>,
+): LocaleCookieOptions {
+  const options = { ...DEFAULT_LOCALE_COOKIE_OPTIONS, ...overrides };
+
+  if (options.sameSite === "none") {
+    return {
+      ...options,
+      secure: true,
+    };
+  }
+
+  return options;
 }
 
 function capitalize(value: string): string {
