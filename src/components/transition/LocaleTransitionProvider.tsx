@@ -19,7 +19,7 @@ type TransitionState = {
   switching: boolean;
 };
 
-const SWITCH_CLEAR_DELAY_MS = 420;
+const SWITCH_CLEAR_DELAY_MS = 280;
 
 export function LocaleTransitionProvider({
   children,
