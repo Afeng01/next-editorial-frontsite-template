@@ -303,10 +303,13 @@ describe("content loaders", () => {
     const readFileSpy = vi.spyOn(fs, "readFile");
 
     try {
+      const baselineReadCount = readFileSpy.mock.calls.length;
       await getDefaultLocaleArticles();
+      const firstCallReadCount = readFileSpy.mock.calls.length - baselineReadCount;
       await getDefaultLocaleArticles();
 
-      expect(readFileSpy.mock.calls.length).toBeGreaterThanOrEqual(12);
+      expect(firstCallReadCount).toBeGreaterThan(0);
+      expect(readFileSpy.mock.calls.length - baselineReadCount).toBe(firstCallReadCount * 2);
     } finally {
       readFileSpy.mockRestore();
     }

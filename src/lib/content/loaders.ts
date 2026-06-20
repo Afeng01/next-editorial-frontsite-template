@@ -31,7 +31,6 @@ interface ParsedFileName {
 }
 
 export interface ContentLoaders {
-  getSiteContent(): Promise<SiteContent>;
   getAboutEntry(locale: Locale): Promise<AboutEntry>;
   getAllArticles(locale: Locale): Promise<ArticleEntry[]>;
   getAllProjects(locale: Locale): Promise<ProjectEntry[]>;
@@ -357,10 +356,6 @@ export function createLocalizedContentLoaders(
   }
 
   return {
-    async getSiteContent() {
-      return siteContent;
-    },
-
     async getAboutEntry(locale) {
       const requestedLocale = requireLocale(locale, "getAboutEntry");
       const entries = await loadNamedEntry("about", (value) =>
