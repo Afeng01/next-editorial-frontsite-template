@@ -58,7 +58,7 @@ export function LanguageToggle({ locale }: LanguageToggleProps) {
   return (
     <div
       aria-label={copy.label}
-      className="relative inline-grid grid-cols-2 items-center rounded-full border border-stone-300 bg-white/85 p-0.5 text-[10px] uppercase tracking-[0.22em] text-stone-500"
+      className="relative inline-grid grid-cols-2 items-center rounded-full border border-stone-300 bg-white/85 p-0.5 text-[10px] uppercase tracking-[0.18em] text-stone-500"
       role="group"
     >
       <span
@@ -72,7 +72,7 @@ export function LanguageToggle({ locale }: LanguageToggleProps) {
       <button
         aria-label="Switch to English"
         aria-pressed={optimisticLocale === "en"}
-        className={`relative z-10 min-w-9 px-2.5 py-1 transition-colors ${
+        className={`relative z-10 min-w-8 px-2 py-1 transition-colors ${
           optimisticLocale === "en" ? "text-white" : "text-stone-500 hover:text-stone-950"
         }`}
         disabled={isPending}
@@ -84,7 +84,7 @@ export function LanguageToggle({ locale }: LanguageToggleProps) {
       <button
         aria-label="切换到中文"
         aria-pressed={optimisticLocale === "zh"}
-        className={`relative z-10 min-w-9 px-2.5 py-1 transition-colors ${
+        className={`relative z-10 min-w-8 px-2 py-1 transition-colors ${
           optimisticLocale === "zh" ? "text-white" : "text-stone-500 hover:text-stone-950"
         }`}
         disabled={isPending}
@@ -93,12 +93,6 @@ export function LanguageToggle({ locale }: LanguageToggleProps) {
       >
         中
       </button>
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-[9px] tracking-normal text-stone-400"
-      >
-        /
-      </span>
     </div>
   );
 }
