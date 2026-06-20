@@ -119,6 +119,11 @@ export function LocaleTransitionProvider({
       clearTimerRef.current = null;
     }
 
+    if (previousChildren == null) {
+      clearPendingLocaleTransition();
+      return;
+    }
+
     transitionIdRef.current += 1;
     const transitionId = transitionIdRef.current;
 
@@ -130,7 +135,7 @@ export function LocaleTransitionProvider({
       });
       scheduleTransitionCleanup(pendingTransition.previous, pendingTransition.next, transitionId);
     });
-  }, [locale, renderedLocale, transition.switching]);
+  }, [locale, previousChildren, renderedLocale, transition.switching]);
 
   return (
     <div

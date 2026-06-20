@@ -17,7 +17,7 @@ describe("LocaleTransitionProvider", () => {
     document.documentElement.lang = "en";
   });
 
-  it("replays an incoming transition after navigation remount", async () => {
+  it("skips the replayed transition on navigation remount when no previous layer is available", async () => {
     savePendingLocaleTransition("en", "zh");
 
     render(
@@ -29,17 +29,15 @@ describe("LocaleTransitionProvider", () => {
     const content = screen.getByText("中文内容");
     const transitionRoot = content.closest("[data-locale-root]");
 
-    await waitFor(() =>
-      expect(transitionRoot).toHaveAttribute("data-locale-switching", "true"),
-    );
-    expect(transitionRoot).toHaveAttribute("data-locale-previous", "en");
-    expect(transitionRoot).toHaveAttribute("data-locale-next", "zh");
+    await new Promise((resolve) => window.setTimeout(resolve, 20));
+
+    expect(transitionRoot).not.toHaveAttribute("data-locale-switching");
+    expect(transitionRoot?.querySelector('[data-locale-layer="previous"]')).toBeNull();
 
     await waitFor(() =>
-      expect(transitionRoot).not.toHaveAttribute("data-locale-switching"),
-      { timeout: 1200 },
+      expect(window.sessionStorage.getItem(LOCALE_TRANSITION_STORAGE_KEY)).toBeNull(),
+      { timeout: 200 },
     );
-    expect(window.sessionStorage.getItem(LOCALE_TRANSITION_STORAGE_KEY)).toBeNull();
   });
 
   it("keeps the document lang attribute aligned with the active locale", async () => {
