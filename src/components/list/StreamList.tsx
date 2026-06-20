@@ -11,7 +11,7 @@ type StreamListProps = {
 
 export function StreamList({ articles, locale }: StreamListProps) {
   return (
-    <ol className="space-y-px bg-stone-200">
+    <ol className="space-y-px bg-stone-200" data-locale-region="main" data-locale-stagger="1">
       {articles.map((article, index) => (
         <li key={article.slug} className="bg-white">
           <LocalizedLink

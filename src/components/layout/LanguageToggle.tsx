@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 
 import { serializeLocaleCookie } from "@/lib/i18n/locale-cookie";
 import { type Locale } from "@/lib/i18n/locales";
@@ -25,11 +25,9 @@ export function LanguageToggle({ locale }: LanguageToggleProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
-  const [optimisticLocale, setOptimisticLocale] = useState(locale);
-
-  useEffect(() => {
-    setOptimisticLocale(locale);
-  }, [locale]);
+  const [pendingLocale, setPendingLocale] = useState<Locale | null>(null);
+  const optimisticLocale =
+    pendingLocale != null && pendingLocale !== locale ? pendingLocale : locale;
 
   function handleSwitch(nextLocale: Locale) {
     if (nextLocale === optimisticLocale) {
@@ -44,7 +42,7 @@ export function LanguageToggle({ locale }: LanguageToggleProps) {
     });
 
     document.cookie = serializeLocaleCookie(nextLocale);
-    setOptimisticLocale(nextLocale);
+    setPendingLocale(nextLocale);
 
     startTransition(() => {
       router.replace(nextHref, { scroll: false });

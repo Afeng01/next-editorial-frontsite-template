@@ -10,7 +10,7 @@ export function CollectionPageHeader({
   summary,
 }: CollectionPageHeaderProps) {
   return (
-    <div className="border-b border-stone-300 pb-8">
+    <div className="border-b border-stone-300 pb-8" data-locale-region="page-header" data-locale-stagger="0">
       <div className="mb-4 text-[11px] uppercase tracking-[0.24em] text-stone-500">
         {eyebrow}
       </div>

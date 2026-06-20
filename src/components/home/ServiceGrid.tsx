@@ -28,7 +28,12 @@ export function ServiceGrid({ locale, services }: ServiceGridProps) {
   const copy = SERVICE_GRID_COPY[locale];
 
   return (
-    <section className="border-t border-stone-200 bg-white" id="services">
+    <section
+      className="border-t border-stone-200 bg-white"
+      data-locale-region="main"
+      data-locale-stagger="5"
+      id="services"
+    >
       <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
         <SectionHeading
           locale={locale}

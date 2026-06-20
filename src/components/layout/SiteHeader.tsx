@@ -34,7 +34,7 @@ export function SiteHeader({ locale, site }: SiteHeaderProps) {
           ))}
           <LanguageToggle locale={locale} />
         </nav>
-        <MobileMenu locale={locale} navigation={site.navigation} />
+        <MobileMenu key={locale} locale={locale} navigation={site.navigation} />
       </div>
     </header>
   );

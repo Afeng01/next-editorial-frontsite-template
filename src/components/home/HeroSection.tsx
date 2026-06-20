@@ -10,9 +10,13 @@ type HeroSectionProps = {
 
 export function HeroSection({ locale, site }: HeroSectionProps) {
   return (
-    <section className="relative bg-white">
+    <section className="relative bg-white" data-locale-region="page-header" data-locale-stagger="0">
       <div className="mx-auto max-w-5xl px-4 pb-20 pt-14 sm:px-6 lg:px-8">
-        <div className="mb-10 flex items-baseline gap-4 text-[11px] uppercase tracking-[0.24em] text-stone-500">
+        <div
+          className="mb-10 flex items-baseline gap-4 text-[11px] uppercase tracking-[0.24em] text-stone-500"
+          data-locale-region="side"
+          data-locale-stagger="1"
+        >
           <span>{site.heroMeta[0].value}</span>
           <span className="h-px flex-1 bg-stone-300" />
           <span>{site.heroMeta[2].value}</span>

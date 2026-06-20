@@ -1,7 +1,6 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import type { Locale } from "@/lib/i18n/locales";
 
@@ -30,15 +29,8 @@ const MENU_COPY = {
 } as const;
 
 export function MobileMenu({ locale, navigation }: MobileMenuProps) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [open, setOpen] = useState(false);
   const copy = MENU_COPY[locale];
-  const serializedSearchParams = searchParams.toString();
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname, serializedSearchParams]);
 
   return (
     <>

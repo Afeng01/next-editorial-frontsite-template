@@ -6,6 +6,11 @@
   --muted: #57534e;
   --border: #d6d3d1;
   --dark-surface: #0c0a09;
+  --locale-transition-duration: 420ms;
+  --locale-transition-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --locale-transition-shift: 18px;
+  --locale-transition-blur: 14px;
+  --locale-transition-stagger-step: 36ms;
 }
 
 @theme inline {
@@ -40,6 +45,115 @@ img {
   display: block;
 }
 
+[data-locale-root] {
+  isolation: isolate;
+  position: relative;
+}
+
+[data-locale-region] {
+  transform-origin: top left;
+}
+
+.locale-transition-layer {
+  position: relative;
+}
+
+[data-locale-root][data-locale-switching="true"] .locale-transition-layer[data-locale-layer="previous"] {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 20;
+}
+
+[data-locale-root][data-locale-switching="true"] .locale-transition-layer[data-locale-layer="current"] {
+  position: relative;
+  z-index: 10;
+}
+
+[data-locale-stagger="0"] {
+  --locale-region-delay: calc(var(--locale-transition-stagger-step) * 0);
+}
+
+[data-locale-stagger="1"] {
+  --locale-region-delay: calc(var(--locale-transition-stagger-step) * 1);
+}
+
+[data-locale-stagger="2"] {
+  --locale-region-delay: calc(var(--locale-transition-stagger-step) * 2);
+}
+
+[data-locale-stagger="3"] {
+  --locale-region-delay: calc(var(--locale-transition-stagger-step) * 3);
+}
+
+[data-locale-stagger="4"] {
+  --locale-region-delay: calc(var(--locale-transition-stagger-step) * 4);
+}
+
+[data-locale-stagger="5"] {
+  --locale-region-delay: calc(var(--locale-transition-stagger-step) * 5);
+}
+
+[data-locale-stagger="6"] {
+  --locale-region-delay: calc(var(--locale-transition-stagger-step) * 6);
+}
+
+[data-locale-stagger="7"] {
+  --locale-region-delay: calc(var(--locale-transition-stagger-step) * 7);
+}
+
+[data-locale-stagger="8"] {
+  --locale-region-delay: calc(var(--locale-transition-stagger-step) * 8);
+}
+
+[data-locale-stagger="9"] {
+  --locale-region-delay: calc(var(--locale-transition-stagger-step) * 9);
+}
+
+[data-locale-region="header"] {
+  --locale-region-shift: calc(var(--locale-transition-shift) * 0.35);
+}
+
+[data-locale-region="page-header"] {
+  --locale-region-shift: calc(var(--locale-transition-shift) * 0.65);
+}
+
+[data-locale-region="main"] {
+  --locale-region-shift: var(--locale-transition-shift);
+}
+
+[data-locale-region="side"] {
+  --locale-region-shift: calc(var(--locale-transition-shift) * 0.8);
+}
+
+[data-locale-region="footer"] {
+  --locale-region-shift: calc(var(--locale-transition-shift) * 0.45);
+}
+
+[data-locale-root][data-locale-switching="true"] [data-locale-region] {
+  animation-duration: var(--locale-transition-duration);
+  animation-fill-mode: both;
+  animation-timing-function: var(--locale-transition-ease);
+  animation-delay: var(--locale-region-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+[data-locale-root][data-locale-switching="true"][data-locale-previous="en"][data-locale-next="zh"] [data-locale-layer="current"] [data-locale-region] {
+  animation-name: locale-region-in-zh;
+}
+
+[data-locale-root][data-locale-switching="true"][data-locale-previous="zh"][data-locale-next="en"] [data-locale-layer="current"] [data-locale-region] {
+  animation-name: locale-region-in-en;
+}
+
+[data-locale-root][data-locale-switching="true"][data-locale-previous="en"][data-locale-next="zh"] [data-locale-layer="previous"] [data-locale-region] {
+  animation-name: locale-region-out-en;
+}
+
+[data-locale-root][data-locale-switching="true"][data-locale-previous="zh"][data-locale-next="en"] [data-locale-layer="previous"] [data-locale-region] {
+  animation-name: locale-region-out-zh;
+}
+
 .rich-copy > :first-child {
   margin-top: 0;
 }
@@ -58,4 +172,139 @@ img {
 
 .rich-copy em {
   color: #44403c;
+}
+
+@keyframes locale-region-out-en {
+  from {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translate3d(0, -8px, 0) scaleX(0.986) scaleY(0.992);
+  }
+}
+
+@keyframes locale-region-out-zh {
+  from {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translate3d(0, -6px, 0) scale(0.992);
+  }
+}
+
+@keyframes locale-region-in-zh {
+  from {
+    opacity: 0;
+    filter: blur(var(--locale-transition-blur));
+    transform: translate3d(0, var(--locale-region-shift, var(--locale-transition-shift)), 0)
+      scaleX(1.016) scaleY(0.988);
+  }
+
+  60% {
+    opacity: 1;
+    filter: blur(2px);
+    transform: translate3d(0, 2px, 0) scaleX(1.004) scaleY(0.998);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}
+
+@keyframes locale-region-in-en {
+  from {
+    opacity: 0;
+    filter: blur(calc(var(--locale-transition-blur) * 0.7));
+    transform: translate3d(0, calc(var(--locale-region-shift, var(--locale-transition-shift)) * 0.75), 0)
+      scale(0.996);
+  }
+
+  60% {
+    opacity: 1;
+    filter: blur(1px);
+    transform: translate3d(0, 1px, 0) scale(0.999);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --locale-transition-duration: 160ms;
+    --locale-transition-shift: 4px;
+    --locale-transition-blur: 0px;
+    --locale-transition-stagger-step: 10ms;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-locale-root][data-locale-switching="true"] [data-locale-region] {
+    animation-duration: var(--locale-transition-duration);
+  }
+
+  @keyframes locale-region-out-en {
+    from {
+      opacity: 1;
+      transform: none;
+    }
+
+    to {
+      opacity: 0;
+      transform: none;
+    }
+  }
+
+  @keyframes locale-region-out-zh {
+    from {
+      opacity: 1;
+      transform: none;
+    }
+
+    to {
+      opacity: 0;
+      transform: none;
+    }
+  }
+
+  @keyframes locale-region-in-zh {
+    from {
+      opacity: 0;
+      transform: none;
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes locale-region-in-en {
+    from {
+      opacity: 0;
+      transform: none;
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 }

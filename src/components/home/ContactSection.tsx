@@ -15,10 +15,15 @@ const CONTACT_SECTION_COPY = {
 
 export function ContactSection({ contact, locale }: ContactSectionProps) {
   return (
-    <section className="border-t border-stone-200 bg-white py-20" id="contact">
+    <section
+      className="border-t border-stone-200 bg-white py-20"
+      data-locale-region="main"
+      data-locale-stagger="7"
+      id="contact"
+    >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5" data-locale-region="side" data-locale-stagger="8">
             <div className="mb-4 text-[11px] uppercase tracking-[0.24em] text-stone-500">
               {CONTACT_SECTION_COPY[locale]}
             </div>

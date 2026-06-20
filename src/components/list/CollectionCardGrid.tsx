@@ -12,7 +12,11 @@ type CollectionCardGridProps = {
 
 export function CollectionCardGrid({ entries, hrefBase, locale }: CollectionCardGridProps) {
   return (
-    <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+    <div
+      className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
+      data-locale-region="main"
+      data-locale-stagger="1"
+    >
       {entries.map((entry) => (
         <LocalizedLink
           key={entry.slug}

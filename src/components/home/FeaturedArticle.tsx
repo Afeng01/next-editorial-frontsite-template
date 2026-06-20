@@ -25,7 +25,7 @@ export function FeaturedArticle({ article, locale }: FeaturedArticleProps) {
   const copy = FEATURED_ARTICLE_COPY[locale];
 
   return (
-    <section className="border-t border-stone-200 bg-white">
+    <section className="border-t border-stone-200 bg-white" data-locale-region="main" data-locale-stagger="1">
       <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="mb-10 text-[11px] uppercase tracking-[0.24em] text-stone-500">
           {copy.eyebrow}

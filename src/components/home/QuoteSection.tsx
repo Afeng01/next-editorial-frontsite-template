@@ -6,7 +6,7 @@ type QuoteSectionProps = {
 
 export function QuoteSection({ quote }: QuoteSectionProps) {
   return (
-    <section className="border-t border-stone-200 bg-white">
+    <section className="border-t border-stone-200 bg-white" data-locale-region="main" data-locale-stagger="6">
       <div className="mx-auto max-w-4xl px-4 py-32 sm:px-6 lg:px-8">
         <div className="mb-12 flex items-center gap-4 text-[11px] uppercase tracking-[0.24em] text-stone-500">
           <span>{quote.label}</span>

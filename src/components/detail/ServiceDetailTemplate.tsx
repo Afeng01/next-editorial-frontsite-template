@@ -13,8 +13,8 @@ type ServiceDetailTemplateProps = {
 
 export async function ServiceDetailTemplate({ locale, service }: ServiceDetailTemplateProps) {
   return (
-    <article className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
-      <header className="mb-12 border-b border-stone-200 pb-8">
+    <article className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8" data-locale-region="main" data-locale-stagger="1">
+      <header className="mb-12 border-b border-stone-200 pb-8" data-locale-region="page-header" data-locale-stagger="0">
         <div className="text-[11px] uppercase tracking-[0.24em] text-stone-500">
           {service.category}
         </div>

@@ -14,7 +14,11 @@ const STATS_SECTION_COPY = {
 
 export function StatsSection({ locale, stats }: StatsSectionProps) {
   return (
-    <section className="border-t border-stone-800 bg-stone-950 text-stone-100">
+    <section
+      className="border-t border-stone-800 bg-stone-950 text-stone-100"
+      data-locale-region="main"
+      data-locale-stagger="3"
+    >
       <div className="mx-auto max-w-5xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="mb-12 text-[11px] uppercase tracking-[0.24em] text-stone-500">
           {STATS_SECTION_COPY[locale]}

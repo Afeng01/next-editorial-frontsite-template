@@ -28,7 +28,12 @@ export function ProjectGrid({ locale, projects }: ProjectGridProps) {
   const copy = PROJECT_GRID_COPY[locale];
 
   return (
-    <section className="border-t border-stone-200 bg-white" id="projects">
+    <section
+      className="border-t border-stone-200 bg-white"
+      data-locale-region="main"
+      data-locale-stagger="4"
+      id="projects"
+    >
       <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
         <SectionHeading
           locale={locale}
