@@ -58,4 +58,14 @@ describe("locale transition layer stacking", () => {
     expect(solidSurfaceBlock).toContain("opacity: 1;");
     expect(solidSurfaceBlock).toContain("transform: none;");
   });
+
+  it("keeps the header visible during locale transitions", () => {
+    const headerBlock = readCssBlock(
+      '[data-locale-root][data-locale-switching="true"] [data-locale-region="header"]',
+    );
+
+    expect(headerBlock).toContain("animation: none;");
+    expect(headerBlock).toContain("opacity: 1;");
+    expect(headerBlock).toContain("transform: none;");
+  });
 });

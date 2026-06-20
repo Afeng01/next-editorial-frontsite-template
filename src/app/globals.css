@@ -137,6 +137,13 @@ img {
   will-change: opacity, transform;
 }
 
+[data-locale-root][data-locale-switching="true"] [data-locale-region="header"] {
+  animation: none;
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
 [data-locale-root][data-locale-switching="true"] [data-locale-solid-surface] {
   animation: none;
   opacity: 1;
